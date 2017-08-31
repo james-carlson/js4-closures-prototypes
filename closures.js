@@ -15,11 +15,16 @@ function outer() {
   another variable called 'inner'. */
   
   // Code Here
-  
+  var inner = outer();
+
+
+
   //Once you do that, invoke inner.
+
+  
   
   //Code Here
-  
+  inner();
   
   
   
@@ -51,7 +56,8 @@ function outer() {
   */
   
     //Code Here
-  
+  callJake = callFriend('Jake');
+  callJake('435-555-9248');
   
   
   
