@@ -263,17 +263,18 @@ function outer() {
    */
   
   function timeOutCounter() {
-    var i = 0
-
-    return(
     
-    for (var i = 0; i <= 5; i++) {
-      setTimeout(function() {
-          console.log(j)
-      }, i * 1000)
+    var closure = function(i) {
+      return function() {
+        console.log(i);
+      };
+    };
 
+    function timeOutCounter() {
+      for (var i=0; i <= 5; i++){
+        setTimeout(closure(i), i * 1000);
+      }
     }
-  }
 
   timeOutCounter();
-  
+  }
