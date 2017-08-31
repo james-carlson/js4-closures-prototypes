@@ -75,7 +75,15 @@ function outer() {
   properly. */
   
   //Code Here
-  
+  function makeCounter() {
+    count = 1
+
+    return function () {
+      return count++
+    }
+  }
+
+
   //Uncomment this once you make your function
   //   var count = makeCounter();
   //   count(); // 1
@@ -107,13 +115,20 @@ function outer() {
   */
   
   function counterFactory(value) {
-  
-    // Code here.
-  
-  
-    return {
+    var counter = value
 
+    return {
+      inc: function() {
+        counter++
+        return counter
+      }
+    ,
+      dec: function() {
+        counter--
+        return counter
+      }
     }
+
   }
   
   
@@ -148,13 +163,14 @@ function outer() {
     var welcomeText = 'You\'re doing awesome, keep it up ';
   
     // code message function here.
-  
-  
+    return function message() {
+    
+    var message = welcomeText + firstname + " " + lastname + ".";  
     //Uncommment this to return the value of your message function
-    //return message;
+    return message;
   
   }
-  
+}
   var greeting = motivation('Billy', 'Bob'); // 'You're doing awesome keep it up Billy Bob.
   
   
@@ -181,18 +197,20 @@ function outer() {
       age: 29,
       location: "Utah"
     };
-  
-    function privateMethod(){
+
+    var privateMethod = function privateMethod(){
       return "Hi, I'm " + person.name + ", age " + person.age + " from " + person.location;
     }
-  
-    // Anything that is being returned is made public and can be invoked from
-    // outside our lexical scope
-    return {
-      // Code here.
+
+    return { 
+      publicMethod: function() {
+        return privateMethod();
+      }
     };
   
   })();
+  
+  module.publicMethod();
   
   
   
@@ -202,13 +220,23 @@ function outer() {
 
   /****** INSTRUCTIONS PROBLEM 7 ******/
   /* Here we have a function named secretNumber that has a secret number. Inside
-  the return object, create two methods called addToSecret and takeAwayFromSecret. addToSecret should have a parameter that is added to the secret number returning the updated secret number. takeAwayFromSecret should have a parameter that takes away from the secret number returning the updated secret number. */
+  the return object, create two methods called addToSecret and takeAwayFromSecret. 
+  addToSecret should have a parameter that is added to the secret number returning 
+  the updated secret number. takeAwayFromSecret should have a parameter that takes
+   away from the secret number returning the updated secret number. */
 
   function secretNumber() {
     var secret = 143;
 
     return {
-      // Code here
+      addToSecret: function(num) {
+        secret += num
+        return secret
+      },
+      takeAwayFromSecret: function(num) {
+        secret -= num
+        return secret
+      }
     }
   }
   
@@ -235,11 +263,17 @@ function outer() {
    */
   
   function timeOutCounter() {
+    var i = 0
+
+    return(
+    
     for (var i = 0; i <= 5; i++) {
       setTimeout(function() {
-          console.log(i)
+          console.log(j)
       }, i * 1000)
+
     }
   }
+
   timeOutCounter();
   
